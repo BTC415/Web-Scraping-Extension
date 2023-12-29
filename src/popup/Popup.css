@@ -2,17 +2,7 @@
 @tailwind components;
 @tailwind utilities;
 
-@media (prefers-color-scheme: light) {
-  a:hover {
-    color: #61dafb;
-  }
-}
-
-h3 {
-  color: #61dafb;
-  text-transform: uppercase;
-  font-size: 1.3rem;
-  font-weight: 200;
-  line-height: 1.2rem;
-  margin: 0.5rem auto;
+body {
+  min-height: 20rem;
+  min-width: 15rem;
 }

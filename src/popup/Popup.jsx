@@ -1,22 +1,49 @@
 import { useState, useEffect, useRef } from 'react'
-import 'highlight.js/styles/github.css'
-import hljs from 'highlight.js/lib/core'
-import json from 'highlight.js/lib/languages/json'
 
 import './Popup.css'
 
-hljs.registerLanguage('json', json)
-
 export const Popup = () => {
-  const [scrapedData, setScrapedData] = useState('')
+  const [scrapedData, setScrapedData] = useState({
+    data: '{}',
+    url: '',
+    breadcrumbs: [],
+    stateType: '',
+  })
   const jsonRef = useRef(null)
 
   const scrapeData = async () => {
     chrome.tabs.query({ active: true, lastFocusedWindow: true }, ([tab]) => {
-      chrome.tabs.sendMessage(tab.id, { text: 'retreive_dom' }, (domContent) => {
-        setScrapedData(domContent === '' ? '' : domContent)
+      chrome.tabs.sendMessage(tab.id, { text: 'retreive_dom' }, (res) => {
+        const cleanUrl = removeFluff(tab.url)
+        setScrapedData({
+          ...res,
+          url: cleanUrl,
+          breadcrumbs: cleanUrl
+            .split('/')
+            .filter((segment) => segment.trim() !== '')
+            .map((segment) => {
+              return (
+                <li>
+                  <a className="link" href={cleanUrl}>
+                    {segment}
+                  </a>
+                </li>
+              )
+            }),
+        })
       })
     })
+  }
+
+  const removeFluff = (url) => {
+    for (const pre of ['https://', 'http://']) {
+      if (url.startsWith(pre)) {
+        url = url.slice(pre.length)
+        break
+      }
+    }
+    if (url.startsWith('www.')) url = url.slice(4)
+    return url
   }
 
   const exportToFile = () => {}
@@ -28,74 +55,45 @@ export const Popup = () => {
   }, [])
 
   useEffect(() => {
-    if (jsonRef && jsonRef.current) hljs.highlightElement(jsonRef.current)
+    if (scrapedData.data) jsonRef.current.value = scrapedData.data
   }, [scrapedData])
 
   return (
-    <main>
-      {scrapedData ? (
-        <div className="mockup-code">
-          <pre ref={jsonRef}>
-            <code>{scrapedData}</code>
-          </pre>
+    <div className="container-lg m-2">
+      <div className="m-2">
+        {scrapedData.breadcrumbs && (
+          <div className="text-xs breadcrumbs overflow-hidden">
+            <ul>{scrapedData.breadcrumbs}</ul>
+          </div>
+        )}
+      </div>
+      <label className="form-control m-2">
+        <textarea
+          className="textarea textarea-bordered min-h-40"
+          placeholder="Bio"
+          ref={jsonRef}
+        ></textarea>
+        <div className="label">
+          <span className="label-text-alt">
+            {scrapedData.stateType === ''
+              ? 'Page does not use React or Next.js'
+              : `Data scraped from ${scrapedData.stateType} state`}
+            .
+          </span>
         </div>
-      ) : (
-        <div>No React or Next.js data was found on this page.</div>
-      )}
-      <div className="btm-nav">
-        <button onClick={exportToFile}>
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            className="h-5 w-5"
-            fill="none"
-            viewBox="0 0 24 24"
-            stroke="currentColor"
-          >
-            <path
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              strokeWidth="2"
-              d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"
-            />
-          </svg>
-          <span className="btm-nav-label">Export</span>
+      </label>
+      <div className="container">
+        <button onClick={copyToClipboard} className="btn btn-md btn-outline btn-primary">
+          Copy to Clipboard
         </button>
-        <button className="active">
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            className="h-5 w-5"
-            fill="none"
-            viewBox="0 0 24 24"
-            stroke="currentColor"
-          >
-            <path
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              strokeWidth="2"
-              d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
-            />
-          </svg>
-          <span className="btm-nav-label">Copy</span>
+        <button onClick={exportToFile} className="btn btn-md btn-outline btn-secondary">
+          Export to File
         </button>
-        <button onClick={showCodeSnippets}>
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            className="h-5 w-5"
-            fill="none"
-            viewBox="0 0 24 24"
-            stroke="currentColor"
-          >
-            <path
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              strokeWidth="2"
-              d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"
-            />
-          </svg>
-          <span className="btm-nav-label">Snippets</span>
+        <button onClick={showCodeSnippets} className="btn btn-md btn-outline btn-accent">
+          Code Snippets
         </button>
       </div>
-    </main>
+    </div>
   )
 }
 
