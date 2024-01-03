@@ -1,16 +1,16 @@
 {
-  "name": "nextjs-data-scraper",
-  "displayName": "nextjs-data-scraper",
+  "name": "scrapenext",
+  "displayName": "ScrapeNext",
   "version": "1.0.0",
   "author": "Peter Rauscher",
-  "description": "",
+  "description": "Easily view & export data from Next.js/React sites. Generate snippets in multiple languages to jumpstart your web scraping project.",
   "type": "module",
   "license": "MIT",
   "keywords": [
     "chrome-extension",
     "react",
-    "vite",
-    "tailwindcss"
+    "nextjs",
+    "web-scraping"
   ],
   "engines": {
     "node": ">=14.18.0"

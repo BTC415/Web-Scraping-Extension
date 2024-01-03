@@ -1,43 +1,63 @@
-import { faCopy } from '@fortawesome/free-solid-svg-icons'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { useContext } from 'react'
+import { PageDataContext } from './PageDataProvider'
 
-export const PageProps = ({ url = '', page = '', query = '', assetPrefix = '', buildId = '' }) => {
+export const PageProps = () => {
+  const pageData = useContext(PageDataContext)
   const copyToClipboard = (text) => {
     if ('clipboard' in navigator) navigator.clipboard.writeText(text)
   }
 
+  const isNextJs = pageData.scrapedData.stateType && pageData.scrapedData.stateType === 'Next.js'
+  const hasQuery = pageData.scrapedData.data && pageData.scrapedData.data.query
+  const queryStringified = hasQuery ? JSON.stringify(pageData.scrapedData.data.query) : ''
+
   return (
-    <div className="overflow-x-auto mb-2">
+    <div className="overflow-x-auto pb-1">
       <table className="table table-sm">
         <tbody>
-          {url && (
-            <tr className="cursor-pointer" onClick={() => copyToClipboard(url)}>
-              <th>URL</th>
-              <td>{url}</td>
+          {pageData.scrapedData.url && (
+            <tr
+              className="cursor-pointer border-neutral-content"
+              onClick={() => copyToClipboard(pageData.scrapedData.url)}
+            >
+              <th className="border-neutral-content">URL</th>
+              <td className="border-neutral-content">{pageData.scrapedData.url}</td>
             </tr>
           )}
-          {page && (
-            <tr className="cursor-pointer" onClick={() => copyToClipboard(page)}>
-              <th>page</th>
-              <td>{page}</td>
+          {pageData.scrapedData.data && pageData.scrapedData.data.page && isNextJs && (
+            <tr
+              className="cursor-pointer border-neutral-content"
+              onClick={() => copyToClipboard(pageData.scrapedData.data.page)}
+            >
+              <th className="border-neutral-content">page</th>
+              <td className="border-neutral-content">{pageData.scrapedData.data.page}</td>
             </tr>
           )}
-          {query && (
-            <tr className="cursor-pointer" onClick={() => copyToClipboard(query)}>
-              <th>query</th>
-              <td>{query}</td>
+          {hasQuery && isNextJs && (
+            <tr
+              className="cursor-pointer border-neutral-content"
+              onClick={() => copyToClipboard(queryStringified)}
+            >
+              <th className="border-neutral-content">query</th>
+              <td className="border-neutral-content">{queryStringified}</td>
             </tr>
           )}
-          {assetPrefix && (
-            <tr className="cursor-pointer" onClick={() => copyToClipboard(assetPrefix)}>
-              <th>assetPrefix</th>
-              <td>{assetPrefix}</td>
+          {pageData.scrapedData.data && pageData.scrapedData.data.assetPrefix && isNextJs && (
+            <tr
+              className="cursor-pointer border-neutral-content"
+              onClick={() => copyToClipboard(pageData.scrapedData.data.assetPrefix)}
+            >
+              <th className="border-neutral-content">assetPrefix</th>
+              <td className="border-neutral-content">{pageData.scrapedData.data.assetPrefix}</td>
             </tr>
           )}
-          {buildId && (
-            <tr className="cursor-pointer" onClick={() => copyToClipboard(buildId)}>
-              <th>buildId</th>
-              <td>{buildId}</td>
+          {pageData.scrapedData.data && pageData.scrapedData.data.buildId && isNextJs && (
+            <tr
+              className="cursor-pointer border-neutral-content"
+              onClick={() => copyToClipboard(pageData.scrapedData.data.buildId)}
+            >
+              <th className="border-neutral-content">buildId</th>
+              <td className="border-neutral-content">{pageData.scrapedData.data.buildId}</td>
             </tr>
           )}
         </tbody>
