@@ -19,7 +19,7 @@ export default defineManifest({
   content_scripts: [
     {
       matches: ['http://*/*', 'https://*/*'],
-      js: ['src/contentScript/index.js'],
+      js: ['src/scripts/content.js'],
     },
   ],
   permissions: ['activeTab', 'storage', 'scripting'],

@@ -1,5 +1,5 @@
 import { useContext } from 'react'
-import { PageDataContext } from './PageDataProvider'
+import { PageDataContext } from '../contexts/PageDataProvider'
 
 export const PageData = () => {
   const { jsonRef, pageDisabled } = useContext(PageDataContext)

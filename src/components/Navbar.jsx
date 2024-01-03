@@ -1,9 +1,9 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faGithub } from '@fortawesome/free-brands-svg-icons'
 import { faSun, faMoon } from '@fortawesome/free-solid-svg-icons'
-import { useState, useEffect, useContext } from 'react'
-import { ThemeContext } from './ThemeProvider'
-import { PageDataContext } from './PageDataProvider'
+import { useContext } from 'react'
+import { ThemeContext } from '../contexts/ThemeProvider'
+import { PageDataContext } from '../contexts/PageDataProvider'
 
 const openLink = (url) => {
   chrome.tabs.create({ url: url })

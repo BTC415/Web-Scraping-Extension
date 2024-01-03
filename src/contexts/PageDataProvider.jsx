@@ -14,11 +14,6 @@ export const PageDataProvider = ({ children }) => {
     pageDisabled: true,
   })
 
-  const copyToClipboard = () => {
-    if (jsonRef.current && 'clipboard' in navigator)
-      navigator.clipboard.writeText(jsonRef.current.textContent)
-  }
-
   const scrapeData = async () => {
     chrome.tabs.query({ active: true, lastFocusedWindow: true }, ([tab]) => {
       setLoading(true)
@@ -48,7 +43,6 @@ export const PageDataProvider = ({ children }) => {
         pageDisabled: !scrapedData.stateType || scrapedData.stateType == '',
         loading: loading,
         jsonRef: jsonRef,
-        copyToClipboard: copyToClipboard,
       }}
     >
       {children}

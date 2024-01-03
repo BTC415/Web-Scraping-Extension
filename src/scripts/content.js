@@ -1,6 +1,4 @@
-console.info('contentScript is running')
-
-chrome.runtime.onMessage.addListener((msg, sender, sendResponse) => {
+chrome.runtime.onMessage.addListener((msg, _, sendResponse) => {
   if (msg.text === 'retreive_dom') {
     // Search for NextJS state object
     let jsonString = document.querySelector('script#__NEXT_DATA__')?.text

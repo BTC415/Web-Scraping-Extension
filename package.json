@@ -1,6 +1,6 @@
 {
-  "name": "scrapenext",
-  "displayName": "ScrapeNext",
+  "name": "nextscraper",
+  "displayName": "NextScraper",
   "version": "1.0.0",
   "author": "Peter Rauscher",
   "description": "Easily view & export data from Next.js/React sites. Generate snippets in multiple languages to jumpstart your web scraping project.",
@@ -37,7 +37,7 @@
     "@types/react-dom": "^18.2.13",
     "@vitejs/plugin-react": "^4.1.0",
     "autoprefixer": "^10.4.16",
-    "daisyui": "^4.4.24",
+    "daisyui": "^4.5.0",
     "glob": "^10.3.10",
     "postcss": "^8.4.32",
     "prettier": "^3.0.3",
