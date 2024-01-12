@@ -7,14 +7,14 @@ export default defineManifest({
   version: packageData.version,
   manifest_version: 3,
   icons: {
-    16: 'img/logo16.png',
-    32: 'img/logo32.png',
-    48: 'img/logo48.png',
-    128: 'img/logo128.png',
+    16: 'img/icon16.png',
+    32: 'img/icon32.png',
+    48: 'img/icon48.png',
+    128: 'img/icon128.png',
   },
   action: {
     default_popup: 'popup.html',
-    default_icon: 'img/logo48.png',
+    default_icon: 'img/icon48.png',
   },
   content_scripts: [
     {
@@ -22,5 +22,8 @@ export default defineManifest({
       js: ['src/scripts/content.js'],
     },
   ],
-  permissions: ['activeTab', 'storage', 'scripting'],
+  background: {
+    service_worker: 'src/scripts/background.js',
+  },
+  permissions: ['activeTab', 'storage', 'webNavigation'],
 })

@@ -1,5 +1,9 @@
 # NextScraper
 
+<p align="center">
+    <img src="https://raw.githubusercontent.com/peterrauscher/NextScraper/main/public/img/icon128.png" />
+</p>
+
 Unlock the power of web scraping with NextScraper! 🌐
 
 🚀 Supercharge your data extraction from Next.js and React websites effortlessly. Whether you're a seasoned developer or just starting your web scraping journey, NextScraper is your ultimate tool to help jumpstart your next web scraping project.

@@ -11,13 +11,13 @@ export const PageDataProvider = ({ children }) => {
     stateType: '',
     jsonString: '{}',
     data: {},
-    pageDisabled: true,
+    pageEnabled: false,
   })
 
   const scrapeData = async () => {
     chrome.tabs.query({ active: true, lastFocusedWindow: true }, ([tab]) => {
       setLoading(true)
-      chrome.tabs.sendMessage(tab.id, { text: 'retreive_dom' }, (res) => {
+      chrome.tabs.sendMessage(tab.id, { type: 'retreive_dom' }, (res) => {
         setScrapedData({
           url: tab.url,
           ...res,
@@ -40,7 +40,7 @@ export const PageDataProvider = ({ children }) => {
     <PageDataContext.Provider
       value={{
         scrapedData: scrapedData,
-        pageDisabled: !scrapedData.stateType || scrapedData.stateType == '',
+        pageEnabled: scrapedData.pageEnabled,
         loading: loading,
         jsonRef: jsonRef,
       }}
