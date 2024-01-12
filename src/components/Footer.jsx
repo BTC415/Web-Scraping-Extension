@@ -5,7 +5,7 @@ import { PageDataContext } from '../contexts/PageDataProvider'
 import { ClipboardContext } from '../contexts/ClipboardProvider'
 
 export const Footer = () => {
-  const { scrapedData, pageDisabled, jsonRef } = useContext(PageDataContext)
+  const { scrapedData, pageEnabled, jsonRef } = useContext(PageDataContext)
   const { copyToClipboard } = useContext(ClipboardContext)
 
   const copySnippet = (language) => {
@@ -114,7 +114,7 @@ export const Footer = () => {
     <footer className="footer bg-base-200 p-2 flex-none">
       <div className="grid grid-cols-3 gap-3 w-full h-full">
         <button
-          disabled={pageDisabled}
+          disabled={!pageEnabled}
           onClick={() => {
             if (jsonRef.current) copyToClipboard(jsonRef.current.textContent)
           }}
@@ -123,17 +123,17 @@ export const Footer = () => {
           <FontAwesomeIcon icon={faCopy} /> Copy
         </button>
         <button
-          disabled={pageDisabled}
+          disabled={!pageEnabled}
           onClick={exportToFile}
           className="btn btn-rounded btn-secondary w-full"
         >
           <FontAwesomeIcon icon={faFileExport} /> Export
         </button>
         <div className="dropdown dropdown-top dropdown-hover w-full">
-          <div role="button" disabled={pageDisabled} className="btn btn-rounded btn-accent w-full">
+          <div role="button" disabled={!pageEnabled} className="btn btn-rounded btn-accent w-full">
             <FontAwesomeIcon icon={faCode} /> Snippets
           </div>
-          {!pageDisabled && (
+          {pageEnabled && (
             <ul className="shadow menu dropdown-content z-[1] bg-base-100 rounded-box">
               <li>
                 <a onClick={() => copySnippet('javascript')}>JavaScript</a>

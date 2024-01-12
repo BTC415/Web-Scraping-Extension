@@ -11,7 +11,7 @@ const openLink = (url) => {
 
 export const Navbar = () => {
   const { theme, toggleTheme } = useContext(ThemeContext)
-  const { scrapedData } = useContext(PageDataContext)
+  const { pageEnabled, scrapedData } = useContext(PageDataContext)
 
   return (
     <div className="navbar flex-none bg-base-200">
@@ -25,9 +25,7 @@ export const Navbar = () => {
       </div>
       <div className="navbar-center">
         <p className="text text-lg font-bold">
-          {!scrapedData.stateType || scrapedData.stateType === ''
-            ? 'NextScraper 🚀'
-            : `${scrapedData.stateType} Data Found ✅`}
+          {pageEnabled ? `${scrapedData.stateType} Data Found ✅` : 'NextScraper 🚀'}
         </p>
       </div>
       <div className="navbar-end">
