@@ -1,0 +1,38 @@
+name: Chrome Webstore Publish
+
+on:
+  push:
+    branches:
+      - publish
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 21.5.0
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Build
+        run: npm run build
+
+      - name: Zip build files
+        run: (cd build && zip -r ../build.zip .)
+
+        # Docs: https://github.com/marketplace/actions/chrome-extension-upload-action
+      - name: Publish to Chrome Webstore
+        uses: mnao305/chrome-extension-upload@v4.0.1
+        with:
+          file-path: build.zip
+          extension-id: ${{ secrets.EXTENSION_ID }}
+          client-id: ${{ secrets.CLIENT_ID }}
+          client-secret: ${{ secrets.CLIENT_SECRET }}
+          refresh-token: ${{ secrets.REFRESH_TOKEN }}
