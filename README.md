@@ -1,28 +1,37 @@
-# NextScraper
-
-<p align="center">
+<div align="center">
     <img src="https://raw.githubusercontent.com/peterrauscher/NextScraper/main/public/img/icon128.png" />
-</p>
+    <h1>NextScraper</h1>
+    <p>Supercharge your data extraction from Next.js and React websites effortlessly.</p>
+</div>
 
-Unlock the power of web scraping with NextScraper! 🌐
+## Install
 
-🚀 Supercharge your data extraction from Next.js and React websites effortlessly. Whether you're a seasoned developer or just starting your web scraping journey, NextScraper is your ultimate tool to help jumpstart your next web scraping project.
+[![Chrome][Chrome-image]][Chrome-url]
 
-## 🔍 KEY FEATURES:
+[Chrome-image]: https://img.shields.io/badge/-Chrome-brightgreen?logo=google-chrome&logoColor=white
+[Chrome-url]: https://chromewebstore.google.com/detail/nextscraper/kjlhnflincmlpkgahnidgebbngieobod
 
-📊 Cached Data Viewing: Gain insights and visualize your scraped data right within the extension. NextScraper provides a user-friendly interface for data management, making it simple to review and export your findings.
+## Features
 
-📦 Export Data Effortlessly: Extract data from Next.js and React sites with ease. Export to files in one click. NextScraper simplifies the process of collecting information, saving you time and effort.
-
-📄 Generate Code Snippets: Jumpstart your web scraping projects by generating code snippets in multiple different languages. Our intuitive snippet generator provides you with ready-to-use code, eliminating the need for rewriting boilerplate.
-
-## 📈 Why Choose NextScraper?
-
-- **Access Data from React and Next.js Sites:** Extract information from dynamic web applications instantly.
+- **Scrape Data from React/Next.js Sites:** Extract information from dynamic web applications instantly. Analyze and explore it right in NextScraper.
+- **Export Data:** Export data from Next.js and React sites with ease. Download JSON files in one click.
 - **Code Snippet Generator:** Save time by letting NextScraper create fast code snippets that allow you to scrape data _**without**_ loading a headless browser.
-- **User-Friendly Interface:** No coding expertise required. NextScraper is designed for both beginners and experts.
-- **Open Source:** Rest easy that your data never leaves your browser. NextScraper does not collect any analytics and the [source code is openly available on Github](https://github.com/peterrauscher/NextScraper).
 
-🌟 Experience the Next Level of Web Scraping! Install NextScraper today and empower your data-driven projects. Maximize your efficiency and accuracy with the ultimate scraping companion.
+## Privacy
+
+No data leaves your browser. Ever. NextScraper does not collect any analytics and the [source code is openly available on Github](https://github.com/peterrauscher/NextScraper). Feel free to build it yourself with the instructions below for your peace of mind.
+
+Read the full [Privacy Policy](/PrivacyPolicy.md) here.
+
+## Building
+
+1. Clone the Github repository.
+2. Switch to the `deploy` branch.
+
+## Development
+
+## Socials
+
+<hr />
 
 🔗 Get started now and make web scraping a breeze with NextScraper!
