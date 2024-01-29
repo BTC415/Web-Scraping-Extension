@@ -2,7 +2,7 @@
 
 ![NextScraper Logo](https://raw.githubusercontent.com/peterrauscher/NextScraper/main/public/img/icon128.png)
 # NextScraper
-Supercharge your data extraction from Next.js and React websites effortlessly.
+Supercharge your data extraction from Next.js, React, or Redux websites effortlessly.
 </div>
 
 ## Install
@@ -15,7 +15,7 @@ Supercharge your data extraction from Next.js and React websites effortlessly.
 ## Features
 
 - **Scrape Data from React/Next.js Sites:** Extract information from dynamic web applications instantly. Analyze and explore it right in NextScraper.
-- **Export Data:** Export data from Next.js and React sites with ease. Download JSON files in one click.
+- **Export Data:** Export data from Next.js, React, and Redux sites with ease. Download JSON files in one click.
 - **Code Snippet Generator:** Save time by letting NextScraper create fast code snippets that allow you to scrape data _**without**_ loading a headless browser.
 
 ## Privacy
