@@ -11,7 +11,10 @@ chrome.runtime.onMessage.addListener((request, _, sendResponse) => {
 const checkForPageData = () =>
   !!(
     document.querySelector('script#__NEXT_DATA__') ||
-    document.querySelector('script[data-name=query]')
+    document.querySelector('script[data-name=query]') ||
+    Array.from(document.getElementsByTagName('script')).find((script) =>
+      script.text.includes('window.__PRELOADED_STATE__ = {'),
+    )
   )
 
 const scrapePageData = () => {
@@ -24,6 +27,19 @@ const scrapePageData = () => {
     if (jsonString) {
       jsonString = jsonString.text.split('=')[1].trim().replace(/;+$/, '')
       stateType = 'React'
+    } else {
+      // If React data is not found, search for Redux data
+      jsonString = Array.from(document.getElementsByTagName('script')).find((script) =>
+        script.text.includes('window.__PRELOADED_STATE__ = {'),
+      )?.text
+      if (jsonString) {
+        jsonString = jsonString
+          .split('window.__PRELOADED_STATE__ =')[1]
+          .split('window.__BUILD_CONTEXT__')[0]
+          .trim()
+          .replace(/;+$/, '')
+        stateType = 'Redux'
+      }
     }
   }
   let data = jsonString ? JSON.parse(jsonString) : {}
