@@ -1,9 +1,3 @@
-<div align="center">
-
-![NextScraper Logo](https://raw.githubusercontent.com/peterrauscher/NextScraper/main/public/img/icon128.png)
-# NextScraper
-Supercharge your data extraction from Next.js, React, or Redux websites effortlessly.
-</div>
 
 ## Install
 
@@ -20,7 +14,7 @@ Supercharge your data extraction from Next.js, React, or Redux websites effortle
 
 ## Privacy
 
-No data leaves your browser. Ever. NextScraper does not collect any analytics and the [source code is openly available on Github](https://github.com/peterrauscher/NextScraper). Feel free to build it yourself with the instructions below for your peace of mind.
+No data leaves your browser. Ever. This extension does not collect any analytics and the [source code is openly available on Github](https://github.com/BTC415/Web-Scraping-Extension). Feel free to build it yourself with the instructions below for your peace of mind.
 
 Read the full [Privacy Policy](/PrivacyPolicy.md) here.
 
@@ -65,12 +59,3 @@ The ideal workflow looks something like this.
 3. Open a pull request to merge your branch with `main`.
 4. Await/request review.
 5. Your changes will be merged when approved.
-
-## Socials
-
-If you like this extension, please feel free to add me on X, connect with me on LinkedIn, follow my Github or buy me a coffee at the links below!
-
-[![X/Twitter](https://img.shields.io/badge/X-000000?style=for-the-badge&logo=x&logoColor=white)](https://twitter.com/peterauscher)
-[![Linkedin](https://img.shields.io/badge/LinkedIn-0077B5?style=for-the-badge&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/peter-rauscher/)
-[![Github](https://img.shields.io/badge/GitHub-100000?style=for-the-badge&logo=github&logoColor=white)](https://github.com/peterrauscher)
-[![Buy Me A Coffee](https://img.shields.io/badge/Buy_Me_A_Coffee-FFDD00?style=for-the-badge&logo=buy-me-a-coffee&logoColor=black)](https://www.buymeacoffee.com/4b2sk4x6mxp)
